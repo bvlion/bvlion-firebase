@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github-gist.min.css">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.gutter {
+    float: left;
+    text-align: right;
+    margin-right: 1em;
+    min-width: 1em;
+    color: #999;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+pre {
+    display: block;
+    margin: 16px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #333;
+    word-break: break-all;
+    word-wrap: break-word;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: rgb(228, 255, 244);
+    padding: 5.5px;
+}
+p {
+  padding: 16px;
+}
+.textarea-padding {
+    padding: 16px;
+}
+textarea {
+    width:100%;
+    height: 100px;
+}
+</style>
+<title>highlightjs test</title>
+</head>
+<body>
+<h2>Code generator of highlightjs</h2>
+<p>上段のテキストエリアにコードを入力すると、<a href="https://highlightjs.org/" target="_blank">highlightjs</a>の結果をpreエリア（このテキストの直下）に出力します。<br>
+下段のテキストエリアには、preエリアのコードをそのまま出力します。<br>
+元々個人のブログからJSを除去するためのに作ったツールですので、あまり過度な期待をせずご使用いただければ幸いです。</p>
+<div id="code"><pre><code></code></pre></div>
+<div class="textarea-padding"><textarea id="area" placeholder="上段のテキストエリア。なのでコードを記入してください。"></textarea></div>
+<div class="textarea-padding"><textarea id="text" placeholder="下段のテキストエリア。ここにpreエリアのコードがそのまま出力されます。"></textarea></div>
+<p>使用しているhighlightjsのCSSは<b>github-gist</b>です。<br>また、行番号やpreには以下のCSSを適用しています。</p>
+<pre><code>.gutter {
+    float: left;
+    text-align: right;
+    margin-right: 1em;
+    min-width: 1em;
+    color: #999;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+pre {
+    display: block;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #333;
+    word-break: break-all;
+    word-wrap: break-word;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: rgb(228, 255, 244);
+    padding: 5.5px;
+}</code></pre>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+<script>
+$(document).ready(function() {
+  $("#area").keyup(function() {
+    $("#code pre code").text($(this).val());
+    $('pre code').each(function(i, block) {
+      hljs.highlightBlock(block);
+      if (i === 0) {
+        lineNumbersBlock(block);
+      }
+    });
+    $("#text").val($("#code").html());
+  });
+});
+function lineNumbersBlock(e) {
+    var regExp = /\r\n|\r|\n/g;
+    var newline = $(e).text().match(regExp);
+
+    var gutter = '<span class="gutter">'
+    for (var i = 0; i <= newline.length; i++) {
+        gutter += (i + 1) + '\n';
+    }
+    gutter += '</span>';
+
+    $(e).prepend(gutter);
+}
+</script>
+</body>
+</html>
