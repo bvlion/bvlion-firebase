@@ -1,109 +1,161 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" />
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github-gist.min.css">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-.gutter {
-    float: left;
-    text-align: right;
-    margin-right: 1em;
-    min-width: 1em;
-    color: #999;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-pre {
-    display: block;
-    margin: 16px;
-    font-size: 13px;
-    line-height: 1.42857143;
-    color: #333;
-    word-break: break-all;
-    word-wrap: break-word;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: rgb(228, 255, 244);
-    padding: 5.5px;
-}
-p {
-  padding: 16px;
-}
-.textarea-padding {
-    padding: 16px;
-}
-textarea {
-    width:100%;
-    height: 100px;
-}
-</style>
-<title>highlightjs test</title>
-</head>
-<body>
-<h2>Code generator of highlightjs</h2>
-<p>上段のテキストエリアにコードを入力すると、<a href="https://highlightjs.org/" target="_blank">highlightjs</a>の結果をpreエリア（このテキストの直下）に出力します。<br>
-下段のテキストエリアには、preエリアのコードをそのまま出力します。<br>
-元々個人のブログからJSを除去するためのに作ったツールですので、あまり過度な期待をせずご使用いただければ幸いです。</p>
-<div id="code"><pre><code></code></pre></div>
-<div class="textarea-padding"><textarea id="area" placeholder="上段のテキストエリア。なのでコードを記入してください。"></textarea></div>
-<div class="textarea-padding"><textarea id="text" placeholder="下段のテキストエリア。ここにpreエリアのコードがそのまま出力されます。"></textarea></div>
-<p>使用しているhighlightjsのCSSは<b>github-gist</b>です。<br>また、行番号やpreには以下のCSSを適用しています。</p>
-<pre><code>.gutter {
-    float: left;
-    text-align: right;
-    margin-right: 1em;
-    min-width: 1em;
-    color: #999;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-pre {
-    display: block;
-    font-size: 13px;
-    line-height: 1.42857143;
-    color: #333;
-    word-break: break-all;
-    word-wrap: break-word;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: rgb(228, 255, 244);
-    padding: 5.5px;
-}</code></pre>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script type="text/javascript">hljs.initHighlightingOnLoad();</script>
-<script>
-$(document).ready(function() {
-  $("#area").keyup(function() {
-    $("#code pre code").text($(this).val());
-    $('pre code').each(function(i, block) {
-      hljs.highlightBlock(block);
-      if (i === 0) {
-        lineNumbersBlock(block);
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="個人で作成したアプリ等を紹介しています。">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>bvlion portfolio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&lang=ja">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="favicon-192x192.png" sizes="192x192" type="image/png">
+    <link rel="icon" href="favicon.ico">
+    <meta property="og:title" content="bvlion portfolio">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="個人で作成したアプリ等を紹介しています。">
+    <meta property="og:url" content="https://bvlion-app.web.app">
+    <meta property="og:image" content="https://bvlion-app.web.app/favicon-192x192.png">
+    <meta property="og:site_name" content="bvlion portfolio">
+    <meta name="keywords" content="bvlion,サービス,アプリ,ツール,portfolio">
+    <meta name="description" content="個人で作成したアプリ等を紹介しています。">
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "WebPage",
+        "name": "bvlion portfolio",
+        "url": "https://bvlion-app.web.app/",
+        "about": "個人で作成したアプリ等を紹介しています。"
       }
-    });
-    $("#text").val($("#code").html());
-  });
-});
-function lineNumbersBlock(e) {
-    var regExp = /\r\n|\r|\n/g;
-    var newline = $(e).text().match(regExp);
+    </script>
+  </head>
+  <body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" id="top">
+      <div class="mdl-layout__content">
+        <div class="bg-image">
+          <p class="main-text">bvlion</p>
+          <p class="sub-text">個人で作成したアプリ等を紹介しています。</p>
+        </div>
+        <img src="img/icon.jpg" class="icon-image">
 
-    var gutter = '<span class="gutter">'
-    for (var i = 0; i <= newline.length; i++) {
-        gutter += (i + 1) + '\n';
-    }
-    gutter += '</span>';
+        <div class="mdl-typography--text-center top-message">
+          <div class="mdl-typography--display-1-color-contrast">Android アプリ</div>
+          <div class="mdl-grid main-layout">
+            <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col">
+              <div class="mdl-card__title mdl-card--expand">
+                <h2 class="mdl-card__title-text">シェブ！</h2>
+              </div>
+              <div class="mdl-card__media icon-background">
+                <img src="img/share-bookmarks.png" class="app-icon">
+              </div>
+              <div class="mdl-card__supporting-text">
+                お気に入りのサイトもアプリも、Google アカウントを使うことで画像付きでシェア（共有）できるアプリです。
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="https://play.google.com/store/apps/details?id=net.ambitious.android.sharebookmarks" target="_blank">
+                  Play Store で見る
+                </a>
+              </div>
+            </div>
+            <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col">
+              <div class="mdl-card__title mdl-card--expand">
+                <h2 class="mdl-card__title-text">近接センサー スイッチ</h2>
+              </div>
+              <div class="mdl-card__media icon-background">
+                <img src="img/proximitysensor.png" class="app-icon">
+              </div>
+              <div class="mdl-card__supporting-text">
+                電源ボタンでなく、自撮りカメラ（フロントカメラ）付近の近接センサーを使い画面をON/OFFできるアプリです。
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="https://play.google.com/store/apps/details?id=net.ambitious.android.proximitysensor" target="_blank">
+                  Play Store で見る
+                </a>
+              </div>
+            </div>
+            <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col">
+              <div class="mdl-card__title mdl-card--expand">
+                <h2 class="mdl-card__title-text">Picture POST</h2>
+              </div>
+              <div class="mdl-card__media icon-background">
+                <img src="img/uploadimage.png" class="app-icon">
+              </div>
+              <div class="mdl-card__supporting-text">
+                画像を HTTP 通信で POST するだけのアプリです。（自分用に作ったものを公開しただけのものとなっています）
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="https://play.google.com/store/apps/details?id=net.ambitious.android.uploadimage" target="_blank">
+                  Play Store で見る
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    $(e).prepend(gutter);
-}
-</script>
-</body>
+        <div class="mdl-typography--text-center top-message">
+          <div class="mdl-typography--display-1-color-contrast">Web アプリ・ツール</div>
+          <div class="mdl-grid main-layout mdl-typography--text-left">
+            <ul class="mdl-list">
+              <li class="mdl-list__item mdl-list__item--three-line">
+                <span class="mdl-list__item-primary-content">
+                  <a class="under-line-none" href="https://disposable-markdown.herokuapp.com/" target="_blank">
+                    <span>使い捨てマークダウン</span>
+                  </a>
+                  <span class="mdl-list__item-text-body">
+                    2017年の GW 2日間で作った Heroku で動いている使い捨てでマークダウンを登録する Web アプリです。<br>
+                    <a href="https://github.com/bvlion/disposable-markdown" target="_blank">ソースコードはこちら</a>
+                  </span>
+                </span>
+              </li>
+              <li class="mdl-list__item mdl-list__item--three-line">
+                <span class="mdl-list__item-primary-content">
+                  <a class="under-line-none" href="https://github.com/bvlion/google-home-notifier-2" target="_blank">
+                    <span>google-home-notifier-2</span>
+                  </a>
+                  <span class="mdl-list__item-text-body">
+                    こちらは <a class="under-line-none" href="https://github.com/noelportugal/google-home-notifier" target="_blank">google-home-notifier</a> が定期的に動作しなくなる原因である音声合成に Text-to-Speech を使うようにしたものです。
+                  </span>
+                </span>
+              </li>
+              <li class="mdl-list__item mdl-list__item--three-line">
+                <span class="mdl-list__item-primary-content">
+                  <a class="under-line-none" href="https://codepen.io/Bvlion/full/GRjYjzK" target="_blank">
+                    <span>Markdown から html を生成する</span>
+                  </a>
+                  <span class="mdl-list__item-text-body">
+                    CODEPEN でサッと Markdown を html に変換できないかと思い作りました。
+                  </span>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mdl-typography--text-center end-bottom top-message">
+          <div class="mdl-typography--display-1-color-contrast">お問い合わせ</div>
+          <div>
+            <p class="mdl-typography--display-1-color-contrast text-message">上記のアプリに関することなど、お問い合わせは下記のリンクからお願いします。</p>
+            <p class="mdl-list__item-text-body">
+              <a class="under-line-none" href="https://www.ambitious-i.net/inquiry">お問い合わせ</a>
+            </p>
+          </div>
+        </div>
+        <footer class="android-footer mdl-mega-footer bottom-height">
+
+          <div class="mdl-mega-footer--middle-section">
+            <a class="android-link mdl-typography--font-light" target="_blank" href="https://www.ambitious-i.net">Blog</a>
+            <a class="android-link mdl-typography--font-light" target="_blank" href="https://twitter.com/ninjinx">Twitter</a>
+            <a class="android-link mdl-typography--font-light" target="_blank" href="https://www.ambitious-i.net/acount">その他アカウント</a>
+          </div>
+
+          <div class="mdl-mega-footer--bottom-section">
+            <p class="mdl-typography--font-light">Copyright © 2021 bvlion. All rights reserved.</p>
+          </div>
+
+        </footer>
+      </div>
+    </div>
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  </body>
 </html>
